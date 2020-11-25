@@ -5,5 +5,8 @@
   <%= @project.name %>
 </p>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<ul>
+<% @project.requirements.each do |requirement| %>
+    <li><%=requirement.part.part_type %> <%=requirement.part.value %> &times;<%= requirement.quantity %></li>
+<% end %>
+</ul>

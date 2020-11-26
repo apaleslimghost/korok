@@ -7,6 +7,17 @@
 
 <ul>
 <% @project.requirements.each do |requirement| %>
-    <li><%=requirement.part.part_type %> <%=requirement.part.value %> &times;<%= requirement.quantity %></li>
+    <li><%= requirement.part.part_type %> <%= requirement.part.value %> &times;<%= requirement.quantity %></li>
 <% end %>
+
+<li>
+    <%= form_with model: [@project, @requirement] do |f| %>
+        <%= f.fields_for @requirement.part do |p| %>
+            <%= p.text_field :part_type %>
+            <%= p.text_field :value %>
+        <% end %>
+        <%= f.number_field :quantity %>
+        <%= f.submit %>
+    <% end %>
+</li>
 </ul>

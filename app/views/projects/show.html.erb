@@ -7,7 +7,12 @@
 
 <ul>
 <% @project.requirements.each do |requirement| %>
-    <li><%= requirement.part.part_type %> <%= requirement.part.value %> &times;<%= requirement.quantity %></li>
+    <li>
+        <%= requirement.part.part_type %>
+        <%= requirement.part.value %>
+        &times;<%= requirement.quantity %>
+        / <%= requirement.part.remaining_quantity(excluding: requirement) %>
+    </li>
 <% end %>
 
 <li>

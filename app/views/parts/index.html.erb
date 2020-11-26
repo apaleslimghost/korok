@@ -8,6 +8,7 @@
       <th>Part type</th>
       <th>Value</th>
       <th>Quantity</th>
+      <th>Allocated</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +19,7 @@
         <td><%= part.part_type %></td>
         <td><%= part.value %></td>
         <td><%= part.quantity %></td>
+        <td><%= part.allocated_quantity %></td>
         <td><%= link_to 'Show', part %></td>
         <td><%= link_to 'Edit', edit_part_path(part) %></td>
         <td><%= link_to 'Destroy', part, method: :delete, data: { confirm: 'Are you sure?' } %></td>

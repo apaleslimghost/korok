@@ -1,28 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
+<h1><%= @project.name %></h1>
 
-<ul>
-<% @project.requirements.each do |requirement| %>
-    <li>
-        <%= requirement.part.part_type %>
-        <%= requirement.part.value %>
-        &times;<%= requirement.quantity %>
-        / <%= requirement.part.remaining_quantity(excluding: requirement) %>
-    </li>
-<% end %>
-
-<li>
-    <%= form_with model: [@project, @requirement] do |f| %>
-        <%= f.fields_for @requirement.part do |p| %>
-            <%= p.text_field :part_type %>
-            <%= p.text_field :value %>
-        <% end %>
-        <%= f.number_field :quantity %>
-        <%= f.submit %>
+<table>
+    <% @project.requirements.each do |requirement| %>
+        <tr>
+            <th><%= requirement.quantity %>&times;</th>
+            <td><%= requirement.part.part_type %></td>
+            <td><%= requirement.part.value %></td>
+            <td>/ <%= requirement.part.remaining_quantity(excluding: requirement) %></td>
+        </tr>
     <% end %>
-</li>
-</ul>
+
+    <tr>
+        <td colspan="4">
+            <%= form_with model: [@project, @requirement] do |f| %>
+                <%= f.fields_for @requirement.part do |p| %>
+                    <%= p.text_field :part_type %>
+                    <%= p.text_field :value %>
+                <% end %>
+                <%= f.number_field :quantity %>
+                <%= f.submit %>
+            <% end %>
+        </td>
+    </tr>
+</table>

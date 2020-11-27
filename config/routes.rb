@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get "home/index"
+  root "home#index"
+
   resources :parts
   resources :projects do
     resources :requirements

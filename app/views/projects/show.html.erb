@@ -3,15 +3,21 @@
 <h1><%= @project.name %></h1>
 
 <table>
-    <% @project.requirements.each do |requirement| %>
-        <tr>
-            <th><%= requirement.quantity %>&times;</th>
-            <td><%= requirement.part.part_type %></td>
-            <td><%= requirement.part.value %></td>
-            <td>/ <%= requirement.part.remaining_quantity(excluding: requirement) %></td>
-        </tr>
+    <% @project.requirements_by_part_type.each do |type, requirements| %>
+        <tbody>
+            <tr><th colspan="4"><%= type.pluralize %></th></tr>
+            <% requirements.each do |requirement| %>
+                <tr>
+                    <th><%= requirement.quantity %>&times;</th>
+                    <td><%= requirement.part.part_type %></td>
+                    <td><%= requirement.part.value %></td>
+                    <td>/ <%= requirement.part.remaining_quantity(excluding: requirement) %></td>
+                </tr>
+            <% end %>
+        </tbody>
     <% end %>
 
+    <tfoot>
     <tr>
         <td colspan="4">
             <%= form_with model: [@project, @requirement] do |f| %>
@@ -24,4 +30,5 @@
             <% end %>
         </td>
     </tr>
+    </tfoot>
 </table>

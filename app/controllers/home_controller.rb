@@ -1,5 +1,8 @@
 class HomeController < ApplicationController
   def index
-    redirect_to controller: :projects, action: :index
+    @parts = Part.all
+      .filter { |p| p.remaining_quantity < 0 }.sort_by(&:remaining_quantity)
+
+    @projects = Project.all
   end
 end

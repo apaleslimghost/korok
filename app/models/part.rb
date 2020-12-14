@@ -9,4 +9,10 @@ class Part < ApplicationRecord
   def remaining_quantity(excluding: nil)
     quantity - allocated_quantity(excluding: excluding)
   end
+
+  def sortable_value
+    Unit.new value
+  rescue ArgumentError
+    value
+  end
 end

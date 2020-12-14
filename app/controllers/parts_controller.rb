@@ -3,7 +3,7 @@ class PartsController < ApplicationController
 
   # GET /parts
   def index
-    @parts = Part.all
+    @parts = Part.order(:value)
   end
 
   # GET /parts/1
@@ -24,7 +24,7 @@ class PartsController < ApplicationController
     @part = Part.new(part_params)
 
     if @part.save
-      redirect_to @part, notice: 'Part was successfully created.'
+      redirect_to @part, notice: "Part was successfully created."
     else
       render :new
     end
@@ -33,7 +33,7 @@ class PartsController < ApplicationController
   # PATCH/PUT /parts/1
   def update
     if @part.update(part_params)
-      redirect_to @part, notice: 'Part was successfully updated.'
+      redirect_to @part, notice: "Part was successfully updated."
     else
       render :edit
     end
@@ -42,17 +42,18 @@ class PartsController < ApplicationController
   # DELETE /parts/1
   def destroy
     @part.destroy
-    redirect_to parts_url, notice: 'Part was successfully destroyed.'
+    redirect_to parts_url, notice: "Part was successfully destroyed."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_part
-      @part = Part.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def part_params
-      params.require(:part).permit(:part_type, :value, :quantity)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_part
+    @part = Part.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def part_params
+    params.require(:part).permit(:part_type, :value, :quantity)
+  end
 end

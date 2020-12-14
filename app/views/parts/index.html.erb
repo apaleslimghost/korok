@@ -3,29 +3,18 @@
 <h1>Parts</h1>
 
 <table>
-  <thead>
-    <tr>
-      <th>Part type</th>
-      <th>Value</th>
-      <th>Quantity</th>
-      <th>Allocated</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @parts.each do |part| %>
-      <tr>
-        <td><%= part.part_type %></td>
-        <td><%= part.value %></td>
-        <td><%= part.quantity %></td>
-        <td><%= part.allocated_quantity %></td>
-        <td><%= link_to 'Show', part %></td>
-        <td><%= link_to 'Edit', edit_part_path(part) %></td>
-        <td><%= link_to 'Destroy', part, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <% @parts.group_by(&:part_type).each do |type, parts| %>
+        <tbody>
+            <tr><th colspan="2"><%= type.pluralize %></th></tr>
+            <% parts.sort_by(&:sortable_value).each do |part| %>
+                <tr>
+                    <th><%= part.quantity %>&times;</th>
+                    <td><%= part.value %></td>
+                </tr>
+            <% end %>
+        </tbody>
     <% end %>
-  </tbody>
 </table>
 
 <br>

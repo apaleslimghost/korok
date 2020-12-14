@@ -5,11 +5,10 @@
 <table>
     <% @project.requirements_by_part_type.each do |type, requirements| %>
         <tbody>
-            <tr><th colspan="4"><%= type.pluralize %></th></tr>
+            <tr><th colspan="3"><%= type.pluralize %></th></tr>
             <% requirements.each do |requirement| %>
                 <tr>
                     <th><%= requirement.quantity %>&times;</th>
-                    <td><%= requirement.part.part_type %></td>
                     <td><%= requirement.part.value %></td>
                     <td>/ <%= requirement.part.remaining_quantity(excluding: requirement) %></td>
                 </tr>
@@ -19,7 +18,7 @@
 
     <tfoot>
     <tr>
-        <td colspan="4">
+        <td colspan="3">
             <%= form_with model: [@project, @requirement] do |f| %>
                 <%= f.fields_for @requirement.part do |p| %>
                     <%= p.text_field :part_type %>

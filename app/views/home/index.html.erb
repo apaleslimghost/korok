@@ -1,14 +1,26 @@
-<ul>
-    <% @parts.each do |part| %>
-        <li>
-            <strong><%= -part.remaining_quantity %>&times;</strong>
-            <%= part.part_type %> <%= part.value %>
-        </li>
-    <% end %>
-</ul>
+<section>
+    <h2>Parts to buy</h2>
+    <ul>
+        <% @parts.each do |part| %>
+            <li>
+                <strong><%= -part.remaining_quantity %>&times;</strong>
+                <%= part.part_type %> <%= part.value %>
+            </li>
+        <% end %>
+    </ul>
 
-<ul>
-    <% @projects.each do |project| %>
-        <li><%= link_to project.name, project %></li>
-    <% end %>
-</ul>
+    <%= link_to "All parts", parts_path %>
+</section>
+
+<section>
+    <h2>Projects</h2>
+    <ul>
+        <% @projects.each do |project| %>
+            <li><%= link_to project.name, project %></li>
+        <% end %>
+
+        <li>
+            <%= render 'projects/form', project: Project.new %>
+        </li>
+    </ul>
+</section>

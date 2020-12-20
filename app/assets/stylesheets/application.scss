@@ -2,8 +2,8 @@ body {
     font-family: 'Overpass', sans-serif;
     font-size: 18px;
     font-weight: 200;
-    background-image: image-url("bg.png");
-    color: #256;
+    background: #fffaf5;
+    color: #210;
 }
 
 strong, b, th {
@@ -12,9 +12,42 @@ strong, b, th {
 
 h1, h2, h3 {
     font-weight: 100;
+    margin-top: 0;
+    text-decoration: underline;
 }
 
 main {
     margin: 0 auto;
     max-width: 54em;
+}
+
+.grid {
+    display: grid;
+    gap: 1em;
+    grid-template-rows: masonry;
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+}
+
+.card {
+    border: 1px solid #efe5e0;
+    padding: 1rem;
+    color: inherit;
+
+    @at-root {
+        a#{&}:hover {
+            background: #fff5f0;
+        }
+
+        a#{&}:active {
+            background: #efe5e0;
+        }
+    }
+}
+
+@for $i from 1 through 17 {
+    @for $j from 1 through 3 {
+        :nth-child(3n + #{$j}) > .card:nth-child(17n + #{$i}) {
+            transform: rotate(5deg * (random() - 0.5));
+        }
+    }
 }

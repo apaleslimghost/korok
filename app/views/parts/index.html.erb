@@ -2,21 +2,19 @@
 
 <h1>Parts</h1>
 
-<table>
+<main class="grid">
 
     <% @parts.group_by(&:part_type).each do |type, parts| %>
-        <tbody>
-            <tr><th colspan="2"><%= type.pluralize %></th></tr>
-            <% parts.sort_by(&:sortable_value).each do |part| %>
-                <tr>
-                    <th><%= part.quantity %>&times;</th>
-                    <td><%= part.value %></td>
-                </tr>
-            <% end %>
-        </tbody>
+        <div class="card">
+            <h3><%= type.pluralize %></h3>
+            <ul>
+                <% parts.sort_by(&:sortable_value).each do |part| %>
+                    <li>
+                        <strong><%= part.quantity %>&times;</strong>
+                        <%= part.value %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
     <% end %>
-</table>
-
-<br>
-
-<%= link_to 'New Part', new_part_path %>
+</main>

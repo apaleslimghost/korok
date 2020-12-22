@@ -19,7 +19,12 @@ class PartsController < ApplicationController
 
   # POST /parts
   def create
-    @part = Part.new(part_params)
+    all_params = part_params
+    quantity = all_params.delete(:quantity)
+    puts quantity, all_params
+
+    @part = Part.find_or_initialize_by(all_params)
+    @part.increment(:quantity, quantity.to_i)
 
     if @part.save
       redirect_to @part, notice: 'Part was successfully created.'

@@ -1,4 +1,4 @@
-<%= form_with(model: part, local: true) do |form| %>
+<%= form_with(model: part, local: true, html: {class: form_class}) do |form| %>
   <% if part.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(part.errors.count, "error") %> prohibited this part from being saved:</h2>

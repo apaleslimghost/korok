@@ -9,15 +9,15 @@ class RequirementsController < ApplicationController
     @requirement = Requirement.find_by(project: project, part: part)
 
     if @requirement
-      @requirement.quantity += req_params[:quantity].to_i
+      @requirement.increment(:quantity, req_params[:quantity].to_i)
     else
       @requirement = Requirement.new(req_params)
       @requirement.part = part
       @requirement.project = project
     end
 
-    if part.save and @requirement.save
-      redirect_to project, notice: "Requirement was successfully created."
+    if part.save && @requirement.save
+      redirect_to project, notice: 'Requirement was successfully created.'
     else
       render :new
     end
@@ -26,6 +26,6 @@ class RequirementsController < ApplicationController
   private
 
   def requirement_params
-    params.require(:requirement).permit(:quantity, part: [:part_type, :value])
+    params.require(:requirement).permit(:quantity, part: %i[part_type value])
   end
 end

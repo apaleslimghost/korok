@@ -12,18 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :part_type %>
     <%= form.text_field :part_type %>
   </div>
 
   <div class="field">
-    <%= form.label :value %>
     <%= form.text_field :value %>
-  </div>
-
-  <div class="field">
-    <%= form.label :quantity %>
-    <%= form.number_field :quantity %>
+    <%= form.number_field :quantity, size: 3 %>
   </div>
 
   <div class="actions">

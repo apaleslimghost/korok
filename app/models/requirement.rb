@@ -5,4 +5,8 @@ class Requirement < ApplicationRecord
   def part_type
     part.part_type
   end
+
+  def fulfilled
+    quantity <= part.quantity
+  end
 end

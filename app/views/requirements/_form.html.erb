@@ -1,0 +1,9 @@
+<% requirement = project.requirements.build(part: Part.new) %>
+<%= form_with model: [project, requirement], html: {class: 'card'} do |f| %>
+    <%= f.fields_for requirement.part do |p| %>
+        <%= p.text_field :part_type %>
+        <%= p.text_field :value %>
+    <% end %>
+    <%= f.number_field :quantity %>
+    <%= f.submit %>
+<% end %>

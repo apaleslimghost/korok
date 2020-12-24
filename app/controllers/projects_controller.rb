@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: %i[show edit update destroy]
 
   # GET /projects
   def index
@@ -7,9 +7,7 @@ class ProjectsController < ApplicationController
   end
 
   # GET /projects/1
-  def show
-    @requirement = Requirement.new(project: @project, part: Part.new)
-  end
+  def show; end
 
   # GET /projects/new
   def new
@@ -17,15 +15,14 @@ class ProjectsController < ApplicationController
   end
 
   # GET /projects/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /projects
   def create
     @project = Project.new(project_params)
 
     if @project.save
-      redirect_to @project, notice: "Project was successfully created."
+      redirect_to @project, notice: 'Project was successfully created.'
     else
       render :new
     end
@@ -34,7 +31,7 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   def update
     if @project.update(project_params)
-      redirect_to @project, notice: "Project was successfully updated."
+      redirect_to @project, notice: 'Project was successfully updated.'
     else
       render :edit
     end
@@ -43,7 +40,7 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   def destroy
     @project.destroy
-    redirect_to projects_url, notice: "Project was successfully destroyed."
+    redirect_to projects_url, notice: 'Project was successfully destroyed.'
   end
 
   private

@@ -1,3 +1,16 @@
 <%= link_to project, class: 'card' do %>
 	<h3><%= project.name %></h3>
+	<% if project.ready %>
+		<strong>✓</strong> All parts in stock
+	<% else %>
+		<ul>
+			<% project.missing.each do |req| %>
+				<li>
+					<strong><%= req.part.remaining_quantity(excluding: req) %></strong>/<%= req.quantity %>
+					<%= req.part.value %>
+					<%= req.part.part_type %>
+				</li>
+			<% end %>
+		</ul>
+	<% end %>
 <% end %>

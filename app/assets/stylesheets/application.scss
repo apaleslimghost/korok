@@ -10,9 +10,12 @@ strong, b, th {
     font-weight: 900;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5, h6 {
     font-weight: 100;
     margin-top: 0;
+}
+
+h1, h2, h3 {
     text-decoration: underline;
 }
 
@@ -89,7 +92,14 @@ label, th {
 
 table {
     table-layout: auto;
+    border-collapse: collapse;
     width: 100%;
+}
+
+tbody::after {
+    content: '';
+    display: block;
+    margin-bottom: 0.5ch;
 }
 
 td.numeric {

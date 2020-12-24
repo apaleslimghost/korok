@@ -3,14 +3,28 @@
 	<% if project.ready %>
 		<strong>✓</strong> All parts in stock
 	<% else %>
-		<ul>
-			<% project.missing.each do |req| %>
-				<li>
-					<strong><%= req.part.remaining_quantity(excluding: req) %></strong>/<%= req.quantity %>
-					<%= req.part.value %>
-					<%= req.part.part_type %>
-				</li>
+		<table>
+			<% project.missing.group_by(&:part_type).each do |type, reqs| %>
+				<thead>
+					<tr>
+						<th colspan="4"><%= type.pluralize %></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% reqs.each do |req| %>
+						<tr>
+							<td width="100%"><%= req.part.value %></td>
+							<td class="numeric missing">
+								<%= req.part.remaining_quantity(excluding: req) %>
+							</td>
+							<td class="separator">/</td>
+							<td class="numeric">
+								<%= req.quantity %>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
 			<% end %>
-		</ul>
+		</table>
 	<% end %>
 <% end %>

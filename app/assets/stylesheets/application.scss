@@ -74,11 +74,32 @@ main {
 .field {
     display: flex;
     flex-direction: column;
+}
 
-    label {
-        font-size: 0.75em;
-        color: #876;
-    }
+label, th {
+    font-size: 0.75em;
+    color: #876;
+    text-align: left;
+    font-weight: normal;
+}
+
+.separator {
+    color: #cba;
+}
+
+table {
+    table-layout: auto;
+    width: 100%;
+}
+
+td.numeric {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.missing {
+    color: #924;
+    font-weight: bold;
 }
 
 input {

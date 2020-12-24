@@ -1,17 +1,30 @@
 <div class="grid">
     <section class="card">
         <h3>Parts to buy</h3>
-        <ul>
-            <% @parts.each do |part| %>
-                <li>
-                    <strong><%= -part.remaining_quantity %>&times;</strong>
-                    <%= part.part_type %> <%= part.value %>
-                </li>
-            <% end %>
-        </ul>
+
+        <table>
+			<% @parts.group_by(&:part_type).each do |type, parts| %>
+				<thead>
+					<tr>
+						<th colspan="4"><%= type.pluralize %></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% parts.each do |part| %>
+						<tr>
+							<td width="100%"><%= part.value %></td>
+							<td class="numeric">
+								<strong><%= -part.remaining_quantity %></strong>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
+			<% end %>
+		</table>
 
         <%= link_to "All parts", parts_path %>
     </section>
+
     <%= render @projects %>
     <%= render 'projects/form', project: Project.new, locals: {form_class: 'card'} %>
 </div>

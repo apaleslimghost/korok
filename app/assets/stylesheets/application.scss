@@ -94,12 +94,13 @@ table {
     table-layout: auto;
     border-collapse: collapse;
     width: 100%;
+    line-height: 1;
 }
 
 tbody::after {
     content: '';
     display: block;
-    margin-bottom: 0.5ch;
+    margin-bottom: 1ch;
 }
 
 td.numeric {

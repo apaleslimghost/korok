@@ -12,15 +12,24 @@
   <% end %>
 
   <div class="fields">
-    <%= form.text_field :part_type %>
+      <div class="field">
+          <%= form.label :part_type %>
+          <%= form.text_field :part_type, placeholder: "e.g. Resistor" %>
+      </div>
   </div>
 
   <div class="fields">
-    <%= form.text_field :value %>
-    <%= form.number_field :quantity, size: 3 %>
+      <div class="field">
+          <%= form.label :value %>
+          <%= form.text_field :value, placeholder: "e.g. 1kΩ" %>
+      </div>
+      <div class="field">
+          <%= form.label :quantity %>
+          <%= form.number_field :quantity, min: 1, size: 3 %>
+      </div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+      <%= form.submit "Add parts to stock" %>
   </div>
 <% end %>

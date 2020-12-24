@@ -6,15 +6,20 @@
     <% @project.requirements_by_part_type.each do |type, requirements| %>
         <section class="card">
             <h3><%= type.pluralize %></h3>
-            <ul>
+            <table>
                 <% requirements.each do |requirement| %>
-                    <li>
-                        <strong><%= requirement.quantity %>&times;</strong>
-                    <%= requirement.part.value %>
-                    / <%= requirement.part.remaining_quantity(excluding: requirement) %>
-                </li>
-            <% end %>
-            </ul>
+                    <tr>
+                        <td width="100%"><%= requirement.part.value %></td>
+                        <td class="numeric <%= "missing" unless requirement.fulfilled %>">
+                            <%= requirement.part.quantity %>
+                        </td>
+                        <td class="separator">/</td>
+                        <td class="numeric">
+                            <%= requirement.quantity %>
+                        </td>
+                    </tr>
+                <% end %>
+            </table>
         </section>
     <% end %>
 

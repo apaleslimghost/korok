@@ -7,14 +7,14 @@
     <% @parts.group_by(&:part_type).each do |type, parts| %>
         <div class="card">
             <h3><%= type.pluralize %></h3>
-            <ul>
+            <table>
                 <% parts.sort_by(&:sortable_value).each do |part| %>
-                    <li>
-                        <strong><%= part.quantity %>&times;</strong>
-                        <%= part.value %>
-                    </li>
+                    <tr>
+                        <td width="100%"><%= part.value %></td>
+                        <td class="numeric"><%= part.quantity %></td>
+                    </tr>
                 <% end %>
-            </ul>
+            </table>
         </div>
     <% end %>
 

@@ -38,7 +38,7 @@ main {
         form#{&} {
             grid-column: span 2;
         }
-        
+
         a#{&}:hover {
             background: #fff5f0;
         }
@@ -57,7 +57,7 @@ main {
     }
 }
 
-.field {
+.fields {
     width: 100%;
     display: flex;
     gap: 1ch;
@@ -66,8 +66,18 @@ main {
         margin-bottom: 0.5rem;
     }
 
-    input:read-write {
+    .field:first-child, input:read-write:not([size]) {
         flex: 1;
+    }
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+
+    label {
+        font-size: 0.75em;
+        color: #876;
     }
 }
 
@@ -81,8 +91,14 @@ input {
         border-bottom: 2px dotted #cba;
     }
 
+    &::placeholder {
+        color: #987;
+    }
+
     &[type=submit], &[type=button] {
         cursor: pointer;
+        font-weight: bold;
+        color: #432;
         background: #cba;
         border-bottom: 2px solid #987;
 

@@ -13,6 +13,18 @@
     </head>
 
     <body>
+        <header>
+            <%= link_to root_path, class: 'logo' do %>
+                <img src="/logo.svg" alt="Korok logo" width="40">
+                <h1>Korok</h1>
+            <% end %>
+            <% if content_for? :nav %>
+                <nav>
+                    <%= content_for :nav %>
+                </nav>
+            <% end %>
+        </header>
+
         <main>
             <%= yield %>
         </main>

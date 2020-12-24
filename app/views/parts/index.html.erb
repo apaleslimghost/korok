@@ -1,8 +1,10 @@
+<% content_for :nav do %>
+    <h2>Parts</h2>
+<% end %>
+
 <p id="notice"><%= notice %></p>
 
-<h1>Parts</h1>
-
-<main class="grid">
+<div class="grid">
 
     <% @parts.group_by(&:part_type).each do |type, parts| %>
         <div class="card">
@@ -19,4 +21,4 @@
     <% end %>
 
     <%= render 'form', part: Part.new, form_class: 'card' %>
-</main>
+</div>

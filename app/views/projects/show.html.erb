@@ -1,8 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= @project.name %></h1>
+<% content_for :nav do %>
+    <h2><%= @project.name %></h2>
+<% end %>
 
-<main class="grid">
+<div class="grid">
     <% @project.requirements_by_part_type.each do |type, requirements| %>
         <section class="card">
             <h3><%= type.pluralize %></h3>
@@ -24,4 +26,4 @@
     <% end %>
 
     <%= render 'requirements/form', project: @project %>
-</main>
+</div>

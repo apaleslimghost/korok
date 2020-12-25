@@ -35,6 +35,15 @@ header {
         margin: 0;
         font-size: 1.75rem;
     }
+
+    nav {
+        display: flex;
+        flex: 1;
+
+        h2 {
+            flex: 1;
+        }
+    }
 }
 
 .logo {
@@ -145,10 +154,40 @@ td.numeric {
     font-weight: bold;
 }
 
-input {
+%button {
+    cursor: pointer;
+    font-weight: bold;
+    color: #432;
+    background: #cba;
+    border-bottom: 2px solid #987;
+
+    &.secondary {
+        border-color: #987;
+        border-style: solid;
+        border-width: 1px 1px 2px;
+        background: transparent;
+    }
+
+    &:hover {
+        &:not(.secondary) {
+            background: #987;
+        }
+        border-color: #876;
+    }
+
+    &:active {
+        border-color: #987;
+    }
+}
+
+%base-input {
     padding: 0.75ch 1ch 0.25ch;
     font: inherit;
     border: 0 none;
+}
+
+input {
+    @extend %base-input;
 
     &:read-write {
         background: #f5f0ea;
@@ -160,19 +199,13 @@ input {
     }
 
     &[type=submit], &[type=button] {
-        cursor: pointer;
-        font-weight: bold;
-        color: #432;
-        background: #cba;
-        border-bottom: 2px solid #987;
-
-        &:hover {
-            background: #987;
-            border-bottom-color: #876;
-        }
-
-        &:active {
-            border-bottom-color: #987;
-        }
+        @extend %button;
     }
+}
+
+a.button {
+    @extend %base-input;
+    @extend %button;
+    display: inline-block;
+    text-decoration: none;
 }

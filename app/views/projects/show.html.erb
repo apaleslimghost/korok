@@ -2,6 +2,7 @@
 
 <% content_for :nav do %>
     <h2><%= @project.name %></h2>
+    <%= link_to "Edit project", [:edit, @project], class: 'button secondary' %>
 <% end %>
 
 <div class="grid">

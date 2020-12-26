@@ -1,6 +1,31 @@
-<h1>Editing Project</h1>
+<% content_for :nav do %>
+	<h2>Editing project</h2>
+	<%= link_to 'Back', @project %>
+	<%= render 'form', project: @project %>
+<% end %>
 
-<%= render 'form', project: @project %>
-
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+<table>
+	<% @project.requirements.group_by(&:part_type).each do |type, reqs| %>
+		<thead>
+			<th colspan="2"><%= type.pluralize %></th>
+		</thead>
+		<tbody>
+			<% reqs.each do |req| %>
+				<tr>
+					<td width="100%"><%= req.part.value %></td>
+					<td>
+						<%= form_with model: [@project, req] do |f| %>
+							<div class="fields">
+								<%= f.number_field :quantity, size: 3, min: 1 %>
+								<%= f.submit '✓' %>
+							</div>
+						<% end %>
+					</td>
+					<td>
+						<%= button_to '✗', [@project, req], method: :delete %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	<% end %>
+</table>

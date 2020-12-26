@@ -23,6 +23,20 @@ class RequirementsController < ApplicationController
     end
   end
 
+  def update
+    project = Project.find(params[:project_id])
+    requirement = Requirement.find(params[:id])
+    requirement.update requirement_params
+    redirect_to [:edit, project]
+  end
+
+  def destroy
+    project = Project.find(params[:project_id])
+    requirement = Requirement.find(params[:id])
+    requirement.destroy!
+    redirect_to [:edit, project]
+  end
+
   private
 
   def requirement_params

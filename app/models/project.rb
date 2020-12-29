@@ -13,4 +13,11 @@ class Project < ApplicationRecord
   def missing
     requirements.reject(&:fulfilled)
   end
+
+  def complete!
+    transaction do
+      requirements.each(&:use_parts!)
+      update!(complete: true)
+    end
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_26_140054) do
+ActiveRecord::Schema.define(version: 2020_12_28_164730) do
 
   create_table "parts", force: :cascade do |t|
     t.string "part_type"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2020_11_26_140054) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "complete", default: false
   end
 
   create_table "requirements", force: :cascade do |t|

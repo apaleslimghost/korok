@@ -9,4 +9,8 @@ class Requirement < ApplicationRecord
   def fulfilled
     quantity <= part.quantity
   end
+
+  def use_parts!
+    part.decrement!(:quantity, quantity)
+  end
 end

@@ -1,6 +1,6 @@
 body {
     font-family: 'Overpass', sans-serif;
-    font-size: 18px;
+    font-size: 18pg;
     font-weight: 200;
     background: #fffaf5;
     color: #210;
@@ -102,9 +102,12 @@ header {
 }
 
 .fields {
-    width: 100%;
     display: flex;
     gap: 1ch;
+
+    form & {
+        width: 100%;
+    }
 
     &:not(:last-child) {
         margin-bottom: 0.5rem;
@@ -155,7 +158,6 @@ td.numeric {
 }
 
 %button {
-    cursor: pointer;
     font-weight: bold;
     color: #432;
     background: #cba;
@@ -168,15 +170,23 @@ td.numeric {
         background: transparent;
     }
 
-    &:hover {
-        &:not(.secondary) {
-            background: #987;
-        }
-        border-color: #876;
+    &:disabled {
+        opacity: 0.8;
     }
 
-    &:active {
-        border-color: #987;
+    &:not(:disabled) {
+        cursor: pointer;
+    
+        &:hover {
+            &:not(.secondary) {
+                background: #987;
+            }
+            border-color: #876;
+        }
+
+        &:active {
+            border-color: #987;
+        }
     }
 }
 

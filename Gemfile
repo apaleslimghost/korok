@@ -27,3 +27,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "ruby-units", "~> 2.3"
 
 gem "pg", "~> 1.2"
+
+gem "attribute_normalizer", "~> 1.2"

@@ -1,6 +1,14 @@
 class Part < ApplicationRecord
   has_many :requirements
   has_many :projects, through: :requirements
+  validates :part_type, presence: true
+  validates :value, presence: true
+
+  normalize_attribute :value do |value|
+    Unit.new value
+  rescue ArgumentError
+    value
+  end
 
   def allocated_quantity(excluding: nil)
     requirements.reject { |req| req == excluding }.map(&:quantity).sum
@@ -8,11 +16,5 @@ class Part < ApplicationRecord
 
   def remaining_quantity(excluding: nil)
     quantity - allocated_quantity(excluding: excluding)
-  end
-
-  def sortable_value
-    Unit.new value
-  rescue ArgumentError
-    value
   end
 end

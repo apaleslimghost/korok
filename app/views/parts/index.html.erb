@@ -10,7 +10,7 @@
         <div class="card">
             <h3><%= type.pluralize %></h3>
             <table>
-                <% parts.sort_by(&:sortable_value).each do |part| %>
+                <% parts.sort_by(&:value).each do |part| %>
                     <tr>
                         <td width="100%"><%= part.value %></td>
                         <td class="numeric"><%= part.quantity %></td>

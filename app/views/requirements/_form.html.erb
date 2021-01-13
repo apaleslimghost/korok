@@ -6,8 +6,10 @@
 				<%= p.label :part_type %>
 				<%= p.text_field :part_type, placeholder: 'e.g. Resistor' %>
 			</div>
+		<% end %>
 	</div>
 	<div class="fields">
+		<%= f.fields_for requirement.part do |p| %>
 			<div class="field">
 				<%= p.label :value %>
 				<%= p.text_field :value, placeholder: 'e.g 1kΩ' %>

@@ -1,5 +1,5 @@
 # to do
-- [ ] projects ready to build
+- [x] projects ready to build
 - [ ] project crud ux
 - [ ] part crud ux
 - [ ] requirement crud ux

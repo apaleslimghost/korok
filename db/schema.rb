@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_12_28_164730) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "parts", force: :cascade do |t|
     t.string "part_type"
     t.string "value"
@@ -29,8 +32,8 @@ ActiveRecord::Schema.define(version: 2020_12_28_164730) do
 
   create_table "requirements", force: :cascade do |t|
     t.integer "quantity"
-    t.integer "part_id", null: false
-    t.integer "project_id", null: false
+    t.bigint "part_id", null: false
+    t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["part_id"], name: "index_requirements_on_part_id"

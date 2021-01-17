@@ -1,13 +1,13 @@
 <% content_for :nav do %>
 	<h2>Editing project</h2>
-	<%= link_to 'Back', @project %>
 	<%= render 'form', project: @project %>
+	<%= link_to 'Back', @project, class: [:button, :secondary] %>
 <% end %>
 
-<table>
+<table class="big striped">
 	<% @project.requirements.group_by(&:part_type).each do |type, reqs| %>
 		<thead>
-			<th colspan="3"><%= type.pluralize %></th>
+			<th colspan="2"><%= type.pluralize %></th>
 		</thead>
 		<tbody>
 			<% reqs.each do |req| %>
@@ -18,11 +18,9 @@
 							<div class="fields">
 								<%= f.number_field :quantity, size: 3, min: 1 %>
 								<%= f.submit '✓' %>
+								<%= button_to '✗', [@project, req], method: :delete, class: :secondary %>
 							</div>
 						<% end %>
-					</td>
-					<td>
-						<%= button_to '✗', [@project, req], method: :delete %>
 					</td>
 				</tr>
 			<% end %>

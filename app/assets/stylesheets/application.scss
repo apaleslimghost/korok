@@ -1,6 +1,6 @@
 body {
     font-family: 'Overpass', sans-serif;
-    font-size: 18pg;
+    font-size: 18px;
     font-weight: 200;
     background: #fffaf5;
     color: #210;
@@ -60,6 +60,8 @@ header {
         margin-top: 0.2em;
         display: flex;
         flex: 1;
+        align-items: center;
+        gap: 1ch;
 
         h2 {
             flex: 1;
@@ -221,12 +223,15 @@ td.numeric {
 
     &:not(:disabled) {
         cursor: pointer;
-    
+
         &:hover {
             &:not(.secondary) {
                 background: #987;
             }
+
             border-color: #876;
+            box-shadow: none;
+            border-radius: 0;
         }
 
         &:active {

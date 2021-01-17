@@ -1,30 +1,32 @@
 <%= link_to project, class: 'card' do %>
 	<h3><%= project.name %></h3>
-	<% if project.ready %>
-		<strong>✓</strong> All parts in stock
-	<% else %>
-		<table>
-			<% project.missing.group_by(&:part_type).each do |type, reqs| %>
-				<thead>
-					<tr>
-						<th colspan="4"><%= type.pluralize %></th>
-					</tr>
-				</thead>
-				<tbody>
-					<% reqs.each do |req| %>
+	<% unless project.requirements.empty? %>
+		<% if project.ready %>
+			<strong>✓</strong> All parts in stock
+		<% else %>
+			<table>
+				<% project.missing.group_by(&:part_type).each do |type, reqs| %>
+					<thead>
 						<tr>
-							<td width="100%"><%= req.part.value %></td>
-							<td class="numeric missing">
-								<%= req.part.remaining_quantity(excluding: req) %>
-							</td>
-							<td class="separator">/</td>
-							<td class="numeric">
-								<%= req.quantity %>
-							</td>
+							<th colspan="4"><%= type.pluralize %></th>
 						</tr>
-					<% end %>
-				</tbody>
-			<% end %>
-		</table>
+					</thead>
+					<tbody>
+						<% reqs.each do |req| %>
+							<tr>
+								<td width="100%"><%= req.part.value %></td>
+								<td class="numeric missing">
+									<%= req.part.remaining_quantity(excluding: req) %>
+								</td>
+								<td class="separator">/</td>
+								<td class="numeric">
+									<%= req.quantity %>
+								</td>
+							</tr>
+						<% end %>
+					</tbody>
+				<% end %>
+			</table>
+		<% end %>
 	<% end %>
 <% end %>

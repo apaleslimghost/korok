@@ -29,6 +29,10 @@ strong, b, th {
 h1, h2, h3, h4, h5, h6 {
     font-weight: 100;
     margin-top: 0;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
 }
 
 h2, h3 {
@@ -143,6 +147,19 @@ header {
     flex-direction: column;
 }
 
+.fixed-field {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5ch;
+    margin-right: 1ch;
+    flex: 1;
+    text-align: left;
+
+    input ~ * {
+        flex: 1;
+    }
+}
+
 label, th {
     font-size: 0.75em;
     color: #876;
@@ -165,6 +182,14 @@ tbody::after {
     content: '';
     display: block;
     margin-bottom: 1ch;
+}
+
+.big {
+    font-size: 1.2em;
+}
+
+.striped tbody tr:nth-child(2n+1) {
+    background: #f9f5ef;
 }
 
 td.numeric {

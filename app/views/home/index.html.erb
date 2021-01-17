@@ -4,7 +4,7 @@
 
 <div class="grid">
 	<% unless @parts.empty? %>
-		<section class="card">
+		<%= link_to add_parts_path, class: 'card' do %>
 			<h3>Parts to buy</h3>
 
 			<table>
@@ -26,7 +26,7 @@
 					</tbody>
 				<% end %>
 			</table>
-		</section>
+		<% end %>
 	<% end %>
 
 	<%= render @projects %>

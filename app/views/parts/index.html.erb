@@ -5,7 +5,6 @@
 <p id="notice"><%= notice %></p>
 
 <div class="grid">
-
     <% @parts.group_by(&:part_type).each do |type, parts| %>
         <div class="card">
             <h3><%= type.pluralize %></h3>

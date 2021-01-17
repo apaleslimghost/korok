@@ -17,6 +17,10 @@ class PartsController < ApplicationController
   # GET /parts/1/edit
   def edit; end
 
+  def add
+    @parts = Part.all.sort_by(&:remaining_quantity)
+  end
+
   # POST /parts
   def create
     all_params = part_params
@@ -36,9 +40,9 @@ class PartsController < ApplicationController
   # PATCH/PUT /parts/1
   def update
     if @part.update(part_params)
-      redirect_to @part, notice: 'Part was successfully updated.'
+      redirect_to add_parts_path, notice: 'Part was successfully updated.'
     else
-      render :edit
+      render :add
     end
   end
 

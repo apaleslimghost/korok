@@ -1,0 +1,18 @@
+<div class="grid">
+	<% groups.each do |group, items| %>
+		<table>
+			<thead>
+				<tr>
+					<th colspan="100%"><%= get_title.(group) %></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% items.each do |item| %>
+					<tr>
+						<%= yield item %>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<% end %>
+</div>

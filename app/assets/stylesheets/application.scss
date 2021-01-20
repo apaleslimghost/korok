@@ -127,6 +127,10 @@ header {
     }
 }
 
+.wide {
+    grid-column: span 2;
+}
+
 .fields {
     display: flex;
     gap: 1ch;
@@ -180,7 +184,7 @@ table {
     line-height: 1;
 }
 
-tbody::after {
+tbody:not(:last-child)::after {
     content: '';
     display: block;
     margin-bottom: 1ch;

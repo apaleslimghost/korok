@@ -4,34 +4,28 @@
 <% end %>
 
 <table class="big striped">
-	<% @parts.group_by(&:part_type).each do |type, parts| %>
-		<thead>
-			<th colspan="2"><%= type.pluralize %></th>
-		</thead>
-		<tbody>
-			<% parts.each do |part| %>
-				<tr>
-					<td width="100%"><%= part.value %></td>
-					<td class="numeric">
-						<%= form_with model: part do |f| %>
-							<div class="fields">
-								<div class="fixed-field">
-									<%= f.number_field :quantity, size: 3, min: 0 %>
-									/
-									<% if part.remaining_quantity < 0 %>
-										<span class="missing">
-											<%= part.allocated_quantity %>
-										</span>
-									<% else %>
-										<span><%= part.allocated_quantity %></span>
-									<% end %>
-								</div>
-								<%= f.submit '✓' %>
-							</div>
+	<%= render 'grouped_table', {
+		groups: @parts.group_by(&:part_type),
+		get_title: :pluralize.to_proc
+	} do |part| %>
+		<td width="100%"><%= part.value %></td>
+		<td class="numeric">
+			<%= form_with model: part do |f| %>
+				<div class="fields">
+					<div class="fixed-field">
+						<%= f.number_field :quantity, size: 3, min: 0 %>
+						/
+						<% if part.remaining_quantity < 0 %>
+							<span class="missing">
+								<%= part.allocated_quantity %>
+							</span>
+						<% else %>
+							<span><%= part.allocated_quantity %></span>
 						<% end %>
-					</td>
-				</tr>
+					</div>
+					<%= f.submit '✓' %>
+				</div>
 			<% end %>
-		</tbody>
+		</td>
 	<% end %>
 </table>

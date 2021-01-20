@@ -4,28 +4,18 @@
 
 <div class="grid">
 	<% unless @parts.empty? %>
-		<%= link_to add_parts_path, class: 'card' do %>
+		<%= link_to add_parts_path, class: ['card', ('wide' if @parts.length > 20)] do %>
 			<h3>Parts to buy</h3>
 
-			<table>
-				<% @parts.group_by(&:part_type).each do |type, parts| %>
-					<thead>
-						<tr>
-							<th colspan="4"><%= type.pluralize %></th>
-						</tr>
-					</thead>
-					<tbody>
-						<% parts.each do |part| %>
-							<tr>
-								<td width="100%"><%= part.value %></td>
-								<td class="numeric">
-									<strong><%= -part.remaining_quantity %></strong>
-								</td>
-							</tr>
-						<% end %>
-					</tbody>
-				<% end %>
-			</table>
+			<%= render 'grouped_table', {
+				groups:  @parts.group_by(&:part_type),
+				get_title: :pluralize.to_proc
+			} do |part| %>
+				<td width="100%"><%= part.value %></td>
+				<td class="numeric">
+					<strong><%= -part.remaining_quantity %></strong>
+				</td>
+			<% end %>
 		<% end %>
 	<% end %>
 

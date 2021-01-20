@@ -1,21 +1,10 @@
 class PartsController < ApplicationController
-  before_action :set_part, only: %i[show edit update destroy]
+  before_action :set_part, only: %i[update]
 
   # GET /parts
   def index
     @parts = Part.where.not(quantity: 0).order(:value)
   end
-
-  # GET /parts/1
-  def show; end
-
-  # GET /parts/new
-  def new
-    @part = Part.new
-  end
-
-  # GET /parts/1/edit
-  def edit; end
 
   def add
     @parts = Part.all.sort_by(&:remaining_quantity)
@@ -44,12 +33,6 @@ class PartsController < ApplicationController
     else
       render :add
     end
-  end
-
-  # DELETE /parts/1
-  def destroy
-    @part.destroy
-    redirect_to parts_url, notice: 'Part was successfully destroyed.'
   end
 
   private

@@ -1,4 +1,12 @@
 class RequirementsController < ApplicationController
+  def index
+    project = Project.find(params[:project_id])
+
+    respond_to do |format|
+      format.json { render json: project.to_json(include: { requirements: { include: :part } }) }
+    end
+  end
+
   def create
     project = Project.find(params[:project_id])
 

@@ -1,0 +1,5 @@
+<%= form_with url: {controller: :sessions, action: :create} do |f| %>
+	<%= f.email_field :email %>
+	<%= f.password_field :password %>
+	<%= f.submit "Log in" %>
+<% end %>

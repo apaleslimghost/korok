@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   resources :projects do
     resources :requirements
   end
+
+  resources :sessions, only: [:new, :create, :delete]
+  resources :users
+
   post 'projects/:id/complete', to: 'projects#complete', as: :complete_project
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

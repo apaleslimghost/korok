@@ -1,8 +1,7 @@
 class HomeController < ApplicationController
   def index
-    @parts = Part.all
-      .filter { |p| p.remaining_quantity < 0 }.sort_by(&:remaining_quantity)
-
-    @projects = Project.all
+    if current_user
+      redirect_to projects_path
+    end
   end
 end

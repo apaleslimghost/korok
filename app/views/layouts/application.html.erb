@@ -23,6 +23,9 @@
                     <%= content_for :nav %>
                 </nav>
             <% end %>
+            <% if current_user %>
+                <%= current_user.email %>
+            <% end %>
         </header>
 
         <main>

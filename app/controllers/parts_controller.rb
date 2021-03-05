@@ -14,9 +14,9 @@ class PartsController < ApplicationController
   def create
     all_params = part_params
     quantity = all_params.delete(:quantity)
-    puts quantity, all_params
+    all_params['user'] = current_user
 
-    @part = Part.find_or_initialize_by(all_params)
+    @part = Part.where(all_params).first_or_initialize
     @part.increment(:quantity, quantity.to_i)
 
     if @part.save

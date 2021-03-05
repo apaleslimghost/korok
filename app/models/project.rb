@@ -1,4 +1,5 @@
 class Project < ApplicationRecord
+  belongs_to :user
   has_many :requirements
   has_many :parts, through: :requirements
   validates :name, presence: true

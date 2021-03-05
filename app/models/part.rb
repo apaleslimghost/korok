@@ -1,4 +1,5 @@
 class Part < ApplicationRecord
+  belongs_to :user
   has_many :requirements
   has_many :projects, through: :requirements
   validates :part_type, presence: true
@@ -17,11 +18,5 @@ class Part < ApplicationRecord
 
   def remaining_quantity(excluding: nil)
     quantity - allocated_quantity(excluding: excluding)
-  end
-
-  # make sure find_or_initialize_by uses normalised value
-  def self.find_or_initialize_by(attributes)
-    part = Part.new(attributes)
-    super(part.attributes.slice('part_type', 'value'))
   end
 end

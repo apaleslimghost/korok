@@ -29,3 +29,5 @@ gem "ruby-units", "~> 2.3"
 gem "pg", "~> 1.2"
 
 gem "attribute_normalizer", "~> 1.2"
+
+gem "rb-gravatar", "~> 1.0"

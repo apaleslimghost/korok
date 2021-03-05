@@ -24,7 +24,10 @@
                 </nav>
             <% end %>
             <% if current_user %>
-                <%= current_user.email %>
+                <%= link_to log_out_path, class: :user do %>
+                    <%= image_tag current_user.gravatar, class: :gravatar %>
+                    <%= current_user.email %>
+                <% end %>
             <% end %>
         </header>
 

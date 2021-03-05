@@ -13,5 +13,7 @@ Rails.application.routes.draw do
   resources :users
 
   post 'projects/:id/complete', to: 'projects#complete', as: :complete_project
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  get '/login', to: 'sessions#new', as: :log_in
+  get '/logout', to: 'sessions#destroy', as: :log_out
 end

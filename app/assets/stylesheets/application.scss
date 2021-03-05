@@ -273,3 +273,15 @@ a.button {
     display: inline-block;
     text-decoration: none;
 }
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 1ch;
+}
+
+.gravatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+}

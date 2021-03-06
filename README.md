@@ -1,6 +1,24 @@
-# to do
-- [ ] heck it lets do users
-- [x] negative remaining quantities look weird
-- [ ] inputting lots of the same type of thing is clunky
-- [ ] default units for things
-- [x] long cards look bad
+# Korok
+
+## running
+
+you need
+
+- ruby 3
+- bundler
+- postgres
+  - a database in it called `korok_development`
+
+run
+
+```
+bundle
+rails db:migrate
+rails server
+```
+
+probably
+
+## licence
+
+AGPL

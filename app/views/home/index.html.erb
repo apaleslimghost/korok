@@ -1,1 +1,46 @@
-<%= render 'sessions/form' %>
+<header class="splash">
+   <%= link_to root_path, class: 'logo' do %>
+      <img src="/logo.svg" alt="Korok logo" width="60">
+      <h1>Korok</h1>
+   <% end %>
+
+   <h2>DIY Electronics Inventory Tracker</h2>
+</header>
+
+<main>
+   <div class="stripe">
+      <div>
+         <h2>Stop guessing what's in your inventory</h2>
+         <p>I dunno about you, but I keep starting a build assuming I've got everything I need, only to get halfway through and have to put it back in the box and head back to Mouser.</p>
+         <p>I build DIY synth kits and design my own. I built Korok to keep track of my big box of crap and make sure I'm always ready to start a new project.</p>
+         <p>&mdash; <a href="https://ghost.computer" target="_blank">Kara</a> xxx</p>
+      </div>
+      <div>
+         <div class="fields">
+            <h2>Get started</h2>
+            <p>or <%= link_to 'log in', log_in_path %></p>
+         </div>
+         <%= render 'users/form', user: User.new %>
+      </div>
+   </div>
+
+   <div class="stripe">
+      <%= render @project, show_all: true, wide: true %>
+      <div>
+         <h2>Say what your projects need</h2>
+         <p>Fill in the BOMs for the projects you're planning. Korok knows about electronic components and units and keeps things sorted and grouped.</p>
+         <p>Korok tries to keep out of your way, so you can label your parts however you like and it'll probably work.</p>
+      </div>
+   </div>
+
+   <div class="stripe">
+      <div>
+         <h2>Find out what you're missing</h2>
+          <p>Fill in what's in your inventory and Korok works out what parts you'll need to buy to complete your projects.</p>
+          <p>When a project is ready to build, Korok will tell you, and you can automatically deduct those parts from your inventory.</p>
+      </div>
+      <%= render @project %>
+      <%= render 'projects/project', project: @ready_project %>
+   </div>
+
+</main>

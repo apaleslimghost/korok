@@ -1,38 +1,23 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Korok</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <%= csrf_meta_tags %>
-        <%= csp_meta_tag %>
-
-        <link rel="icon" href="/favicon.svg">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@100;200;900&display=swap" rel="stylesheet">
-        <%= stylesheet_link_tag 'application', media: 'all' %>
-    </head>
-
-    <body>
-        <header>
-            <%= link_to root_path, class: 'logo' do %>
-                <img src="/logo.svg" alt="Korok logo" width="40">
-                <h1>Korok</h1>
+<%= extends :base do %>
+    <header>
+        <%= link_to root_path, class: 'logo' do %>
+            <img src="/logo.svg" alt="Korok logo" width="40">
+            <h1>Korok</h1>
+        <% end %>
+        <% if content_for? :nav %>
+            <nav>
+                <%= content_for :nav %>
+            </nav>
+        <% end %>
+        <% if current_user %>
+            <%= link_to log_out_path, class: :user do %>
+                <%= image_tag current_user.gravatar, class: :gravatar %>
+                <%= current_user.email %>
             <% end %>
-            <% if content_for? :nav %>
-                <nav>
-                    <%= content_for :nav %>
-                </nav>
-            <% end %>
-            <% if current_user %>
-                <%= link_to log_out_path, class: :user do %>
-                    <%= image_tag current_user.gravatar, class: :gravatar %>
-                    <%= current_user.email %>
-                <% end %>
-            <% end %>
-        </header>
+        <% end %>
+    </header>
 
-        <main>
-            <%= yield %>
-        </main>
-    </body>
-</html>
+    <main>
+        <%= yield %>
+    </main>
+<% end %>

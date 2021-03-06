@@ -1,18 +1,23 @@
-<%= link_to project, class: ['card', ('wide' if project.requirements.length > 20)] do %>
+<% show_all ||= false %>
+<% wide ||= false %>
+
+<%= link_to project, class: ['card', ('wide' if wide or project.requirements.length > 20)] do %>
 	<h3><%= project.name %></h3>
 	<% unless project.requirements.empty? %>
 		<% if project.ready %>
 			<strong>✓</strong> All parts in stock
 		<% else %>
 			<%= render 'grouped_table', {
-				groups: project.missing.group_by(&:part_type),
+				groups: (show_all ? project.requirements : project.missing).group_by(&:part_type),
 				get_title: :pluralize.to_proc
 			} do |req| %>
 				<td width="100%"><%= req.part.value %></td>
-				<td class="numeric missing">
-					<%= req.part.quantity %>
-				</td>
-				<td class="separator">/</td>
+				<% unless show_all %>
+					<td class="numeric missing">
+						<%= req.part.quantity %>
+					</td>
+					<td class="separator">/</td>
+				<% end %>
 				<td class="numeric">
 					<%= req.quantity %>
 				</td>

@@ -3,11 +3,16 @@
 }
 
 body {
+    margin: 0;
     font-family: 'Overpass', sans-serif;
     font-size: 18px;
     font-weight: 200;
     background: #fffaf5;
     color: #210;
+}
+
+p {
+    margin-top: 0;
 }
 
 a:link, a:visited {
@@ -52,8 +57,9 @@ header {
     display: flex;
     align-items: center;
     gap: 2em;
-    margin-top: 1em;
-    margin-bottom: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
 
     h2 {
         margin: 0;
@@ -69,6 +75,22 @@ header {
 
         h2 {
             flex: 1;
+        }
+    }
+
+    &.splash {
+        margin-bottom: 4em;
+        max-width: none;
+        flex-direction: column;
+        background: linear-gradient(
+            to bottom right,
+            #f9f5ef 50%,
+            #fce2d6
+        );
+
+
+        h1 {
+            font-size: 3.6em;
         }
     }
 }
@@ -97,6 +119,33 @@ header {
     gap: 1em;
     grid-template-rows: masonry;
     grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+}
+
+.stripe {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 4em;
+    gap: 1em;
+
+    > * {
+        flex: 2;
+    }
+
+    > h2 {
+        flex-basis: 100%;
+    }
+
+    h2 {
+        margin-bottom: 1ch;
+    }
+
+    .card {
+        flex: 1;
+    }
+
+    .wide {
+        flex: 2;
+    }
 }
 
 .card {
@@ -138,6 +187,7 @@ header {
 .fields {
     display: flex;
     gap: 1ch;
+    align-items: flex-end;
 
     form & {
         width: 100%;

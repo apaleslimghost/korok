@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Overpass', sans-serif;
     font-size: 18px;
@@ -142,15 +146,20 @@ header {
     &:not(:last-child) {
         margin-bottom: 0.5rem;
     }
-
-    .field:first-child, input:read-write:not([size]) {
-        flex: 1;
-    }
 }
 
 .field {
     display: flex;
     flex-direction: column;
+    flex: 1;
+
+    &.small {
+        flex: 0;
+    }
+
+    input {
+        width: 100%;
+    }
 }
 
 .fixed-field {

@@ -1,0 +1,16 @@
+<%= form_with url: {controller: :sessions, action: :create}, html: {class: :card} do |f| %>
+
+<div class="fields">
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  </div>
+
+	<%= f.submit "Log in" %>
+<% end %>

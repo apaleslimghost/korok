@@ -3,10 +3,14 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   def index
-    @parts = Part.all
+    unless current_user
+      redirect_to root_path
+    end
+
+    @parts = Part.where(user: current_user)
     .filter { |p| p.remaining_quantity < 0 }.sort_by(&:remaining_quantity)
 
-    @projects = Project.all
+    @projects = Project.where(user: current_user)
   end
 
   # GET /projects/1

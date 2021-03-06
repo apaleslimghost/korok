@@ -3,29 +3,47 @@
 	<%= link_to 'Back', parts_path, class: [:button, :secondary] %>
 <% end %>
 
-<table class="big striped">
-	<%= render 'grouped_table', {
-		groups: @parts.group_by(&:part_type),
-		get_title: :pluralize.to_proc
-	} do |part| %>
-		<td width="100%"><%= part.value %></td>
-		<td class="numeric">
-			<%= form_with model: part do |f| %>
-				<div class="fields">
-					<div class="fixed-field">
-						<%= f.number_field :quantity, size: 3, min: 0 %>
-						/
-						<% if part.remaining_quantity < 0 %>
-							<span class="missing">
-								<%= part.allocated_quantity %>
-							</span>
-						<% else %>
-							<span><%= part.allocated_quantity %></span>
-						<% end %>
-					</div>
-					<%= f.submit '✓' %>
+<%= form_with model: Part.new, html: {class: 'inline'} do |f| %>
+	<div class="fields">
+		<div class="field">
+			<%= f.label :part_type %>
+			<%= f.text_field :part_type, placeholder: 'e.g. Resistor' %>
+		</div>
+		<div class="field">
+			<%= f.label :value %>
+			<%= f.text_field :value, placeholder: 'e.g 1kΩ' %>
+		</div>
+		<div class="field small">
+			<%= f.label :quantity %>
+			<%= f.number_field :quantity, min: 1, size: 3 %>
+		</div>
+		<%= f.submit 'Add stock parts' %>
+	</div>
+<% end %>
+
+<%= render 'grouped_table', {
+	groups: @parts.group_by(&:part_type),
+	get_title: :pluralize.to_proc,
+	full_width: true,
+	table_class: 'big striped'
+} do |part| %>
+	<td width="100%"><%= part.value %></td>
+	<td class="numeric">
+		<%= form_with model: part do |f| %>
+			<div class="fields">
+				<div class="fixed-field">
+					<%= f.number_field :quantity, size: 3, min: 0 %>
+					/
+					<% if part.remaining_quantity < 0 %>
+						<span class="missing">
+							<%= part.allocated_quantity %>
+						</span>
+					<% else %>
+						<span><%= part.allocated_quantity %></span>
+					<% end %>
 				</div>
-			<% end %>
-		</td>
-	<% end %>
-</table>
+				<%= f.submit '✓' %>
+			</div>
+		<% end %>
+	</td>
+<% end %>

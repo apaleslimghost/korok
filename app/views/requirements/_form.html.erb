@@ -1,5 +1,7 @@
-<% requirement = project.requirements.build(part: Part.new) %>
-<%= form_with model: [project, requirement], html: {class: 'card'} do |f| %>
+<% form_class ||= nil %>
+<% requirement = Requirement.new(project: project, part: Part.new) %>
+
+<%= form_with model: [project, requirement], html: {class: form_class} do |f| %>
 	<div class="fields">
 		<%= f.fields_for requirement.part do |p| %>
 			<div class="field">

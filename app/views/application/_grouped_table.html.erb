@@ -1,6 +1,9 @@
-<div class="grid">
+<% full_width ||= false %>
+<% table_class ||= '' %>
+
+<% unless full_width %><div class="grid"><% end %>
 	<% groups.each do |group, items| %>
-		<table>
+		<table class="<%= table_class %>">
 			<thead>
 				<tr>
 					<th colspan="100%"><%= get_title.(group) %></th>
@@ -15,4 +18,4 @@
 			</tbody>
 		</table>
 	<% end %>
-</div>
+<% unless full_width %></div><% end %>

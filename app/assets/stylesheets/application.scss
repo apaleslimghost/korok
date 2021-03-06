@@ -184,6 +184,17 @@ header {
     grid-column: span 2;
 }
 
+form.inline {
+    display: flex;
+    gap: 1ch;
+    align-items: flex-end;
+    margin-bottom: 1em;
+
+    .fields {
+        margin-bottom: 0;
+    }
+}
+
 .fields {
     display: flex;
     gap: 1ch;

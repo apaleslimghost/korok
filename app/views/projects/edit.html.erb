@@ -1,23 +1,24 @@
 <% content_for :nav do %>
 	<h2>Editing project</h2>
 	<%= render 'form', project: @project %>
-	<%= link_to 'Back', @project, class: [:button, :secondary] %>
 <% end %>
 
-<table class="big striped">
-	<%= render 'grouped_table', {
-		groups: @project.requirements.group_by(&:part_type),
-		get_title: :pluralize.to_proc
-	} do |req| %>
-		<td width="100%"><%= req.part.value %></td>
-		<td>
-			<%= form_with model: [@project, req] do |f| %>
-				<div class="fields">
-					<%= f.number_field :quantity, size: 3, min: 1 %>
-					<%= f.submit '✓' %>
-					<%= button_to '✗', [@project, req], method: :delete, class: :secondary %>
-				</div>
-			<% end %>
-		</td>
-	<% end %>
-</table>
+<%= render 'requirements/form', project: @project, form_class: :inline %>
+
+<%= render 'grouped_table', {
+	groups: @project.requirements.group_by(&:part_type),
+	get_title: :pluralize.to_proc,
+	full_width: true,
+	table_class: 'big striped'
+} do |req| %>
+	<td width="100%"><%= req.part.value %></td>
+	<td>
+		<%= form_with model: [@project, req] do |f| %>
+			<div class="fields">
+				<%= f.number_field :quantity, size: 3, min: 1 %>
+				<%= f.submit '✓' %>
+				<%= button_to '✗', [@project, req], method: :delete, class: :secondary %>
+			</div>
+		<% end %>
+	</td>
+<% end %>

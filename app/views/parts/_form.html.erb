@@ -1,0 +1,21 @@
+<% form_class ||= nil %>
+
+<%= form_with model: part, html: {class: form_class} do |f| %>
+	<div class="fields">
+		<div class="field">
+			<%= f.label :part_type %>
+			<%= f.text_field :part_type, placeholder: 'e.g. Resistor' %>
+		</div>
+   </div>
+	<div class="fields">
+		<div class="field">
+			<%= f.label :value %>
+			<%= f.text_field :value, placeholder: 'e.g 1kΩ' %>
+		</div>
+		<div class="field small">
+			<%= f.label :quantity %>
+			<%= f.number_field :quantity, min: 1, size: 3 %>
+		</div>
+		<%= f.submit 'Add stock parts' %>
+	</div>
+<% end %>

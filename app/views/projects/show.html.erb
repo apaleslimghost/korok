@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<% content_for :title, @project.name %>
 <% content_for :nav do %>
     <h2><%= @project.name %></h2>
     <div class="fields">

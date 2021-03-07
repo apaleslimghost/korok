@@ -20,9 +20,9 @@ class PartsController < ApplicationController
     @part.increment(:quantity, quantity.to_i)
 
     if @part.save
-      redirect_to @part, notice: 'Part was successfully created.'
+      redirect_to parts_path, notice: 'Part was successfully created.'
     else
-      render :new
+      render :index
     end
   end
 

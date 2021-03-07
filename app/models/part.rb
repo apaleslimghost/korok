@@ -20,4 +20,8 @@ class Part < ApplicationRecord
     params[:value] = params[:value].to_unit_maybe
     Part.where(params).first_or_initialize
   end
+
+  def value
+    self[:value].to_unit_maybe
+  end
 end

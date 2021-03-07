@@ -14,3 +14,15 @@ class String
     self
   end
 end
+
+module FixUnitSpaceship
+  def <=>(other)
+    super(other)
+  rescue ArgumentError
+    return 0
+  end
+end
+
+class Unit
+  prepend FixUnitSpaceship
+end

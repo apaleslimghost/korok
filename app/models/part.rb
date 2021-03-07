@@ -22,6 +22,6 @@ class Part < ApplicationRecord
   end
 
   def value
-    self[:value].to_unit_maybe
+    self[:value].to_unit_maybe if self[:value]
   end
 end

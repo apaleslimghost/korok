@@ -3,7 +3,7 @@ class PartsController < ApplicationController
 
   # GET /parts
   def index
-    @parts = Part.where(user: current_user).where.not(quantity: 0).sort_by(:value)
+    @parts = Part.where(user: current_user).where.not(quantity: 0).sort_by(&:value)
   end
 
   def add

@@ -7,6 +7,7 @@ class Part < ApplicationRecord
   validates :quantity, numericality: true
 
   normalize_attribute :value, :to_unit_maybe
+  normalize_attribute :part_type, :singularize
 
   def allocated_quantity(excluding: nil)
     requirements.reject { |req| req == excluding }.map(&:quantity).sum

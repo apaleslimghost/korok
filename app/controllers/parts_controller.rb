@@ -3,11 +3,11 @@ class PartsController < ApplicationController
 
   # GET /parts
   def index
-    @parts = Part.where.not(quantity: 0).order(:value)
+    @parts = Part.where(user: current_user).where.not(quantity: 0).order(:value)
   end
 
   def add
-    @parts = Part.all.sort_by(&:remaining_quantity)
+    @parts = Part.where(user: current_user).sort_by(&:remaining_quantity)
   end
 
   # POST /parts

@@ -16,7 +16,7 @@ class PartsController < ApplicationController
     quantity = all_params.delete(:quantity)
     all_params['user'] = current_user
 
-    @part = Part.where(all_params).first_or_initialize
+    @part = Part.find_or_initialize_by(all_params)
     @part.increment(:quantity, quantity.to_i)
 
     if @part.save

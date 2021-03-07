@@ -15,7 +15,7 @@ class RequirementsController < ApplicationController
     part_params = req_params.delete :part
     part_params['user'] = current_user
 
-    part = Part.where(part_params).first_or_initialize
+    part = Part.find_or_initialize_by(part_params)
     @requirement = Requirement.find_by(project: project, part: part)
 
     if @requirement

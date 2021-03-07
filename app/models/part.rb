@@ -6,11 +6,7 @@ class Part < ApplicationRecord
   validates :value, presence: true
   validates :quantity, numericality: true
 
-  normalize_attribute :value do |value|
-    Unit.new value
-  rescue ArgumentError
-    value
-  end
+  normalize_attribute :value, :to_unit_maybe
 
   def allocated_quantity(excluding: nil)
     requirements.reject { |req| req == excluding }.map(&:quantity).sum
@@ -18,5 +14,10 @@ class Part < ApplicationRecord
 
   def remaining_quantity(excluding: nil)
     quantity - allocated_quantity(excluding: excluding)
+  end
+
+  def self.find_or_initialize_by(params)
+    params[:value] = params[:value].to_unit_maybe
+    Part.where(params).first_or_initialize
   end
 end
